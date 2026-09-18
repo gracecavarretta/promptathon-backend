@@ -67,7 +67,8 @@ module.exports = async function handler(req, res) {
   try {
     const letter = await callGemini(prompt, 0.7, 'text/plain');
     return sendJson(res, 200, { success: true, letter });
-  } catch {
+  } catch (error) {
+    console.error('Letter generation failed:', error instanceof Error ? error.message : 'Unknown error');
     return sendJson(res, 200, { success: false });
   }
 };

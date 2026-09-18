@@ -104,7 +104,8 @@ module.exports = async function handler(req, res) {
         }
       }
     }
-  } catch {
+  } catch (error) {
+    console.error('Merchant classification failed:', error instanceof Error ? error.message : 'Unknown error');
     // The pre-populated results are the required fallback for every failed item.
   }
 
